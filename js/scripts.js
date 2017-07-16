@@ -22,38 +22,29 @@ var divide = function(number1, number2) {
 			Handles interactivity with user.
 			Calls functions defined in Business Logic */
 $(document).ready(function() {
-	/* 1. Add */
-	$('form#add').submit(function(event) {
+	/* Refactored UI Logic */
+	$('form#calculator').submit(function(event) {
 		event.preventDefault();
-		var number1 = parseInt($('#add1').val());
-		var number2 = parseInt($('#add2').val());
-		// alert(add(number1, number2));
-		var result = add(number1, number2);
-		$('#output-add').text("Result = " + result); 
-	});
-	/* 2. Subtract */
-	$('form#subtract').submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($('#sub1').val());
-		var number2 = parseInt($('#sub2').val());
-		var result = subtract(number1, number2);
-		$('#output-subtract').text("Result = " + result);
-	});
-	/* 3. Multiply */
-	$('form#multiply').submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($('#multi1').val());
-		var number2 = parseInt($('#multi2').val());
-		var result = multiply(number1, number2);
-		$('#output-multiply').text("Result = " + result);
-	});
-	/* 4. Divide */
-	$('form#divide').submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($('#divide1').val());
-		var number2 = parseInt($('#divide2').val());
-		var result = divide(number1, number2);
-		$('#output-divide').text("Result = " + result)
+		var number1 = parseInt($('#input1').val());
+		var number2 = parseInt($('#input2').val());
+		var operator = $('input:radio[name=operator]:checked').val();
+		var result;
+		// console.log("1st number: " + number1);
+		// console.log("2nd number: " + number2);
+		// console.log("operator: " + operator);
+		if (operator === "add") {
+			result = add(number1, number2);
+		}
+		else if (operator === "subtract") {
+			result = subtract(number1, number2);
+		}
+		else if (operator === "multiply") {
+			result = multiply(number1, number2);
+		}
+		else if (operator === "divide") {
+			result = divide(number1, number2);
+		}
+		$('#output').text(result);
 	});
 });
 
